@@ -1,14 +1,20 @@
-import DummyClass from "../src/simple-event"
+import SimpleEvent from "../src/simple-event"
 
 /**
- * Dummy test
+ * Test Event Fires
  */
 describe("Dummy test", () => {
-  it("works if true is truthy", () => {
-    expect(true).toBeTruthy()
+  
+  it("SimpleEvent is instantiable", () => {
+    expect(new SimpleEvent()).toBeInstanceOf(SimpleEvent)
   })
-
-  it("DummyClass is instantiable", () => {
-    expect(new DummyClass()).toBeInstanceOf(DummyClass)
+  var xx=10;
+  it("emmition works", () => {
+    var ev = new SimpleEvent();
+    var handler = jest.fn()
+    ev.subscribe(handler);
+    ev.emit(xx);
+    expect(handler).toHaveBeenCalled();
+    expect(handler).toHaveBeenCalledWith([xx]);
   })
 })
